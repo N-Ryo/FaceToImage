@@ -22,3 +22,4 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+![Cloudinary_Usage](https://github.com/N-Ryo/FaceToImage/blob/master/back/cloudinary_usage.png?raw=true)
