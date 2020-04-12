@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_12_210910) do
+ActiveRecord::Schema.define(version: 2020_04_12_212930) do
 
   create_table "books", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -51,6 +51,15 @@ ActiveRecord::Schema.define(version: 2020_04_12_210910) do
     t.integer "book_id", null: false
     t.string "title"
     t.integer "index", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "user_books", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "book_id", null: false
+    t.integer "page_id", null: false
+    t.boolean "stucked", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
