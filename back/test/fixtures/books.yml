@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  status: 1
+  range: 1
+  limit: 2020-04-12 14:37:10
+
+two:
+  title: MyString
+  status: 1
+  range: 1
+  limit: 2020-04-12 14:37:10
