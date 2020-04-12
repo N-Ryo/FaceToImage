@@ -116,3 +116,4 @@ sw.*
 
 # Ignore master key for decrypting credentials and more.
 /back/config/master.key
+/back/vendor/bundle
