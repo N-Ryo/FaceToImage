@@ -49,6 +49,7 @@
         <v-icon>mdi-minus</v-icon>
       </v-btn>
       <v-toolbar-title v-text="title" />
+      <v-toolbar-title v-text="mobile" />
       <v-spacer />
       <v-btn
         icon
@@ -89,6 +90,9 @@
 </template>
 
 <script>
+import axios from 'axios'
+import { mapState, mapActions } from 'vuex'
+
 export default {
   data () {
     return {
@@ -110,40 +114,33 @@ export default {
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      ua: undefined,
       title: 'Face To Image'
     }
   },
   mounted() {
-    this.ua = "User-agent header sent: " + navigator.userAgent;
+    axios.get('https://face-to-image.herokuapp.com/api/v1/users.json').then(response => {
+      console.log(response.data)
+    })
+    this.fetchAccessInfo({
+      ua: navigator.userAgent,
+      lang: navigator.language
+    })
   },
   computed: {
-    mobile() {
-      const toMatch = [
-        /Android/i,
-        /webOS/i,
-        /iPhone/i,
-        /iPad/i,
-        /iPod/i,
-        /BlackBerry/i,
-        /Windows Phone/i
-      ];
-
-      return toMatch.some((toMatchItem) => {
-          return navigator.userAgent.match(toMatchItem);
-      });
-    },
+    ...mapState({
+      mobile: state => state.info.mobile,
+      locale: state => state.info.locale,
+    })
+  },
+  watch: {
     locale() {
-      let locale = navigator.language
-      if (locale === 'ja') {
-        this.title = '絵本と。'
-      } else {
-        locale = 'en'
-        this.title = 'Face to Image'
-      }
-      console.log(locale)
-      return locale
+      this.title = this.locale === 'ja' ? '絵本と。' : 'Face To Image'
     }
+  },
+  methods: {
+    ...mapActions({
+      fetchAccessInfo: 'info/fetchAccessInfo'
+    })
   }
 }
 </script>
