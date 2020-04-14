@@ -48,7 +48,7 @@
       >
         <v-icon>mdi-minus</v-icon>
       </v-btn>
-      <v-toolbar-title v-text="title" />
+      <v-toolbar-title v-text="$t('title')" />
       <v-toolbar-title v-text="mobile" />
       <v-spacer />
       <v-btn
@@ -114,7 +114,6 @@ export default {
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: 'Face To Image'
     }
   },
   mounted() {
@@ -122,20 +121,13 @@ export default {
       console.log(response.data)
     })
     this.fetchAccessInfo({
-      ua: navigator.userAgent,
-      lang: navigator.language
+      ua: navigator.userAgent
     })
   },
   computed: {
     ...mapState({
-      mobile: state => state.info.mobile,
-      locale: state => state.info.locale,
+      mobile: state => state.info.mobile
     })
-  },
-  watch: {
-    locale() {
-      this.title = this.locale === 'ja' ? '絵本と。' : 'Face To Image'
-    }
   },
   methods: {
     ...mapActions({

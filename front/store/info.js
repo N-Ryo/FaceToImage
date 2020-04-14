@@ -1,19 +1,15 @@
 export const state = () => ({
-  mobile: false,
-  locale: 'ja'
+  mobile: false
 })
 
 export const mutations = {
   setMobile(state, mobile) {
     state.mobile = mobile;
   },
-  setLocale(state, locale) {
-    state.locale = locale;
-  }
 }
 
 export const actions = {
-  fetchAccessInfo({commit}, {ua, lang}) {
+  fetchAccessInfo({commit}, {ua}) {
     const toMatch = [
       /Android/i,
       /webOS/i,
@@ -27,9 +23,6 @@ export const actions = {
     const mobile = toMatch.some((toMatchItem) => {
         return ua.match(toMatchItem);
     });
-    console.log(lang)
-    console.log(ua)
     commit('setMobile', mobile);
-    commit('setLocale', lang);
   }
 }

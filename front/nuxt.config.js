@@ -1,4 +1,5 @@
 import colors from 'vuetify/es5/util/colors'
+import messages from './locale/messages'
 
 export default {
   mode: 'spa',
@@ -40,7 +41,19 @@ export default {
   /*
   ** Nuxt.js modules
   */
-  modules: [],
+  modules: [
+    [
+      'nuxt-i18n',
+      {
+        locales: ['ja', 'en'],
+        defaultLocale: 'ja',
+        vueI18n: {
+          fallbackLocale: 'ja',
+          messages: messages
+        }
+      }
+    ]
+  ],
   /*
   ** vuetify module configuration
   ** https://github.com/nuxt-community/vuetify-module
