@@ -1,5 +1,5 @@
 <template>
-  <v-app dark>
+  <v-app>
     <v-navigation-drawer
       v-model="drawer"
       :mini-variant="miniVariant"
@@ -110,7 +110,39 @@ export default {
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: 'Vuetify.js'
+      ua: undefined,
+      title: 'Face To Image'
+    }
+  },
+  mounted() {
+    this.ua = "User-agent header sent: " + navigator.userAgent;
+  },
+  computed: {
+    mobile() {
+      const toMatch = [
+        /Android/i,
+        /webOS/i,
+        /iPhone/i,
+        /iPad/i,
+        /iPod/i,
+        /BlackBerry/i,
+        /Windows Phone/i
+      ];
+
+      return toMatch.some((toMatchItem) => {
+          return navigator.userAgent.match(toMatchItem);
+      });
+    },
+    locale() {
+      let locale = navigator.language
+      if (locale === 'ja') {
+        this.title = '絵本と。'
+      } else {
+        locale = 'en'
+        this.title = 'Face to Image'
+      }
+      console.log(locale)
+      return locale
     }
   }
 }
