@@ -23,3 +23,5 @@ Things you may want to cover:
 
 * ...
 ![Cloudinary_Usage](https://github.com/N-Ryo/FaceToImage/blob/master/back/cloudinary_usage.png?raw=true)
+
+git subtree push --prefix back heroku master
